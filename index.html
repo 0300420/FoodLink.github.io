@@ -5,7 +5,10 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
     }
+
     .navbar {
       background-color: #FA0050;
       color: white;
@@ -14,6 +17,7 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .logout-button {
       border: 1px solid white;
       border-radius: 5px;
@@ -22,98 +26,100 @@
       color: white;
       cursor: pointer;
     }
+
     .logout-button:hover {
       background-color: white;
       color: #FA0050;
     }
-    .popup {
+
+    .sidebar {
+      background-color: #444;
+      width: 200px;
       position: fixed;
+      left: 20px;
+      top: 200px;
+      padding: 20px;
+    }
+
+    .sidebar-button {
+      display: block;
+      background-color: #FFF;
+      color: #333;
+      padding: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid #444;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+
+    .sidebar-button:hover {
+      color: #FA0050;
+    }
+
+    .sidebar-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .center-content {
+      display: none;
+      text-align: center;
+      position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: 600px;
+      height: 450px;
       padding: 20px;
-      background-color: white;
-      border: 1px solid #FA0050;
+      background-color: #f2f2f2;
       border-radius: 5px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       z-index: 9999;
     }
- .sidebar {
-            background-color: #444; /* 새로운 사이드바 색상 */
-            width: 200px;
-            position: fixed;
-            left: 20px; /* 왼쪽으로 약간 띄웁니다. */
-            top: 200px; /* 사이드바 위치를 조정합니다. */
-            padding: 20px;
-        }
-        
-        .sidebar-button {
-            display: block;
-            background-color: #FFF;
-            color: #333;
-            padding: 10px;
-            text-decoration: none;
-            font-weight: bold; /* 폰트를 볼드체로 설정합니다. */
-            border: 2px solid #444; /* 버튼에 테두리를 추가합니다. */
-            border-radius: 5px; /* 버튼에 둥근 테두리를 적용합니다. */
-            margin-bottom: 10px; /* 버튼 사이의 간격을 추가합니다. */
-            transition: color 0.3s; /* 마우스 호버 시 글자색 변화를 부드럽게 만듭니다. */
-        }
-        
-        .sidebar-button:hover {
-            color: #FA0050; /* 마우스 호버 시 글자색을 변경합니다. */
-        }
-        .sidebar-button {
-            display: flex;
-            justify-content: center; /* 버튼 내부 글자를 가로로 중앙 정렬 */
-            align-items: center; /* 버튼 내부 글자를 세로로 중앙 정렬 */
-        }
 
-        /* 나머지 웹페이지 스타일 및 내용 */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-        
-        main {
-            margin-left: 240px; /* 사이드바 너비에 따라 중앙 컨텐츠의 위치를 조정합니다. */
-            padding: 20px;
-        }
-        
-        h1 {
-            color: #333;
-        }
-        
-        p {
-            color: #555;
-        }
-        
-        .center-content {
-            display: none;
-            text-align: center;
-        }
-        
-        .center-content p {
-            margin-top: 30px;
-        }
-        
-        .center-content .login-button {
-            display: inline-block;
-            background-color: #FA0050;
-            color: #FFF;
-            padding: 10px 20px;
-            margin-top: 20px;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        
-        .center-content .login-button img {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
+    .center-content .form-label {
+      text-align: right;
+      margin-bottom: 5px;
+      width: 150px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .center-content .form-input {
+      width: 300px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    .center-content .form-button {
+      border: none;
+      border-radius: 5px;
+      padding: 8px 16px;
+      margin-right: 5px;
+      cursor: pointer;
+      background-color: #ccc;
+      color: #000;
+    }
+
+    .center-content .delete-button {
+      background-color: gray;
+      color: #FFF;
+      float: right;
+      margin-top: -30px;
+    }
+
+    .center-content .save-button {
+      background-color: #FA0050;
+      color: #FFF;
+    }
+
+    .form-button.close-button {
+      background-color: #FA0050;
+      color: #FFF;
+    }
   </style>
 </head>
 <body>
@@ -122,16 +128,46 @@
     <div class="logout-button" onclick="logout()">로그아웃</div>
   </div>
 
- <div class="sidebar">
-        <a class="sidebar-button" href="#">장바구니</a>
-        <a class="sidebar-button" href="#">최근 주문한 음식</a>
-        <a class="sidebar-button" href="#">리뷰 남기기</a>
-        <a class="sidebar-button" href="#">마이 포인트</a>
-        <a class="sidebar-button" href="#">보유 쿠폰</a>
-        <a class="sidebar-button" href="#">알림함</a>
-        <a class="sidebar-button" href="#">고객센터</a>
-        <a class="sidebar-button" id="edit-button" href="#">회원정보 수정</a>
+  <div class="sidebar">
+    <a class="sidebar-button" href="#">장바구니</a>
+    <a class="sidebar-button" href="#">최근 주
+
+문한 음식</a>
+    <a class="sidebar-button" href="#">리뷰 남기기</a>
+    <a class="sidebar-button" href="#">마이 포인트</a>
+    <a class="sidebar-button" href="#">보유 쿠폰</a>
+    <a class="sidebar-button" href="#">알림함</a>
+    <a class="sidebar-button" href="#">고객센터</a>
+    <a class="sidebar-button" id="edit-button" href="#">회원정보 수정</a>
+  </div>
+
+  <div class="center-content">
+    <h1>회원 정보 수정</h1>
+    <div>
+      <div class="form-label">이름:</div>
+      <input type="text" class="form-input" value="푸드링크" disabled>
     </div>
+    <div>
+      <div class="form-label">아이디:</div>
+      <input type="text" class="form-input" value="FL123" disabled>
+    </div>
+    <div>
+      <div class="form-label">닉네임:</div>
+      <input type="text" class="form-input" value="FLFL" placeholder="변경할 닉네임">
+    </div>
+    <div>
+      <div class="form-label">비밀번호:</div>
+      <input type="password" class="form-input" placeholder="변경할 비밀번호">
+    </div>
+    <div>
+      <div class="form-label">휴대폰 번호:</div>
+      <input type="text" class="form-input" value="010-1234-5678" placeholder="변경할 휴대폰 번호">
+    </div>
+    <br>
+    <button class="form-button save-button" onclick="saveChanges()">완료</button>
+    <button class="form-button delete-button" onclick="deleteAccount()">회원 탈퇴</button>
+    <button class="form-button close-button" onclick="closePopup()">닫기</button>
+  </div>
 
   <script>
     function logout() {
@@ -144,6 +180,26 @@
         document.querySelector(".logout-button").innerHTML = "로그인";
       }, 2000);
     }
+
+    function openPopup() {
+      document.querySelector(".center-content").style.display = "block";
+    }
+
+    function closePopup() {
+      document.querySelector(".center-content").style.display = "none";
+    }
+
+    function saveChanges() {
+      alert("변경이 완료되었습니다.");
+    }
+
+    function deleteAccount() {
+      if (confirm("정말로 회원 탈퇴하시겠습니까?")) {
+        alert("회원 탈퇴되었습니다.");
+      }
+    }
+
+    document.getElementById("edit-button").addEventListener("click", openPopup);
   </script>
 </body>
 </html>
